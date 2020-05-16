@@ -4,7 +4,7 @@ const BORDER_RADIUS = '';
 export default {
   bgColor: '#FAFAFA',
   blackColor: '#262626',
-  blueColor: '#241d9c',
+  blueColor: '#0095f6',
   darkBlueColor: '#00366B',
   darkGrayColor: '#999',
   lightGreyColor: '#c7c7c7',

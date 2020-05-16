@@ -5,10 +5,13 @@ const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-transform: uppercase;
+  font-size: 12px;
 `;
 
 const List = styled.ul`
   display: flex;
+  font-weight: 600;
 `;
 
 const ListItem = styled.li`
@@ -18,13 +21,12 @@ const ListItem = styled.li`
 `;
 
 const Link = styled.a`
-  text-transform: uppercase;
   color: ${props => props.theme.darkBlueColor};
-  font-size: 12px;
-  font-weight: 600;
 `;
 
-const CopyRight = styled.span``;
+const CopyRight = styled.span`
+  color: ${props => props.theme.darkGrayColor}
+`;
 
 export default () => (
   <Footer>
