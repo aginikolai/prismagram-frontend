@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import Input from "../Components/Input";
-import Button from "../Components/Button";
+import Input from "../../Components/Input";
+import Button from "../../Components/Button";
 
 const Wrapper = styled.div`
   min-height: 80vh;
@@ -47,27 +47,24 @@ const Link = styled.span`
   cursor: pointer;
 `;
 
-export default () => {
-  const [action, setAction] = useState('logIn');
+export default ({action, userName, password, firstName, lastName, email, setAction, onLogin}) => {
   return (
     <Wrapper>
       <Form>
         {action === 'logIn' ? (
             <form action="">
-              <Input placeholder={"Username"}/>
-              <Input placeholder={"Password"}/>
+              <Input placeholder={"Email"} {...email} type="email"/>
               <Button text={"Log In"} />
             </form>
           ) : (
-              <form action="">
-                <Input placeholder={"First name"}/>
-                <Input placeholder={"Last Name"}/>
-                <Input placeholder={"Email"}/>
-                <Input placeholder={"Username"}/>
-                <Input placeholder={"Password"}/>
-                <Button text={"Sign Up"} />
-              </form>
-            )
+            <form action="">
+              <Input placeholder={"First name"} {...firstName}/>
+              <Input placeholder={"Last Name"} {...lastName}/>
+              <Input placeholder={"Email"} {...email} type="email"/>
+              <Input placeholder={"Username"} {...userName}/>
+              <Button text={"Sign Up"} />
+            </form>
+          )
         }
 
       </Form>
