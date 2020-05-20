@@ -47,39 +47,46 @@ const Link = styled.span`
   cursor: pointer;
 `;
 
-export default ({action, userName, password, firstName, lastName, email, setAction, onLogin}) => {
+export default ({action, userName, password, firstName, lastName, email, setAction, onSubmit, secret}) => {
   return (
     <Wrapper>
       <Form>
-        {action === 'logIn' ? (
-            <form action="">
+        {action === 'logIn' &&(
+            <form onSubmit={onSubmit}>
               <Input placeholder={"Email"} {...email} type="email"/>
               <Button text={"Log In"} />
             </form>
-          ) : (
-            <form action="">
-              <Input placeholder={"First name"} {...firstName}/>
-              <Input placeholder={"Last Name"} {...lastName}/>
-              <Input placeholder={"Email"} {...email} type="email"/>
-              <Input placeholder={"Username"} {...userName}/>
-              <Button text={"Sign Up"} />
-            </form>
-          )
-        }
-
-      </Form>
-      <StateChanger>
-        {action === 'logIn'
-          ? (
-            <>
-              Don't have an account?{" "} <Link onClick={() => setAction("signUp")}>Sign up</Link>
-            </>
-          ) : (
-            <>
-              Have an account? <Link onClick={() => setAction("logIn")}>Log in</Link>
-            </>
           )}
-      </StateChanger>
+        {action === 'signUp' &&(
+          <form onSubmit={onSubmit}>
+            <Input placeholder={"First name"} {...firstName}/>
+            <Input placeholder={"Last Name"} {...lastName}/>
+            <Input placeholder={"Email"} {...email} type="email"/>
+            <Input placeholder={"Username"} {...userName}/>
+            <Button text={"Sign Up"} />
+          </form>
+        ) }
+        {action === 'confirm' && (
+          <form onSubmit={onSubmit}>
+            <Input placeholder={"Confirm Secret"} required {...secret}/>
+            <Button text={"Confirm"}/>
+          </form>
+        )}
+      </Form>
+      {action !== 'confirm' && (
+        <StateChanger>
+          {action === 'logIn'
+            ? (
+              <>
+                Don't have an account?{" "} <Link onClick={() => setAction("signUp")}>Sign up</Link>
+              </>
+            ) : (
+              <>
+                Have an account? <Link onClick={() => setAction("logIn")}>Log in</Link>
+              </>
+            )}
+        </StateChanger>
+      )}
     </Wrapper>
   )
 }
