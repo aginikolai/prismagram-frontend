@@ -2,6 +2,7 @@ const BOX_BORDER = '';
 const BORDER_RADIUS = '';
 
 export default {
+  maxWidth: '935px',
   bgColor: '#FAFAFA',
   blackColor: '#262626',
   blueColor: '#0095f6',

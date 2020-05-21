@@ -12,7 +12,7 @@ import {useQuery} from "react-apollo-hooks";
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: 935px;
+  max-width: ${props => props.theme.maxWidth};
   width: 100%;
 `;
 
