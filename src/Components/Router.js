@@ -13,11 +13,9 @@ const LoggedInRoutes = () => (
 const LoggedOutRoutes = () => <><Route exact path = '/' component={Auth}/></>;
 
 const MainRouter = ({isLoggedIn}) => (
-  <Router>
     <Switch>
       {isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes/>}
     </Switch>
-  </Router>
 );
 
 MainRouter.propTypes = {
