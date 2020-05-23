@@ -7,7 +7,7 @@ import {HashRouter as Router} from "react-router-dom";
 
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
-import MainRouter from "./Router";
+import MainRouter from "./Routers";
 import Footer from "./Footer";
 import {useQuery} from "react-apollo-hooks";
 import Header from "./Header";
