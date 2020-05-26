@@ -30,7 +30,7 @@ export default () => {
       <ThemeProvider theme={Theme}>
         <GlobalStyles/>
         <Router>
-          <Header />
+          {isLoggedIn && <Header />}
           <Wrapper>
             <MainRouter isLoggedIn={isLoggedIn}/>
             <Footer />

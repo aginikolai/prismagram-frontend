@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Helmet} from 'react-helmet';
 
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
@@ -58,19 +59,27 @@ export default ({action, userName, password, firstName, lastName, email, setActi
             </form>
           )}
         {action === 'signUp' &&(
-          <form onSubmit={onSubmit}>
-            <Input placeholder={"First name"} {...firstName}/>
-            <Input placeholder={"Last Name"} {...lastName}/>
-            <Input placeholder={"Email"} {...email} type="email"/>
-            <Input placeholder={"Username"} {...userName}/>
-            <Button text={"Sign Up"} />
-          </form>
+          <>
+            <Helmet><title>Sign Up | Prismagram</title></Helmet>
+            <form onSubmit={onSubmit}>
+              <Input placeholder={"First name"} {...firstName}/>
+              <Input placeholder={"Last Name"} {...lastName}/>
+              <Input placeholder={"Email"} {...email} type="email"/>
+              <Input placeholder={"Username"} {...userName}/>
+              <Button text={"Sign Up"} />
+            </form>
+          </>
+
         ) }
         {action === 'confirm' && (
-          <form onSubmit={onSubmit}>
-            <Input placeholder={"Confirm Secret"} required {...secret}/>
-            <Button text={"Confirm"}/>
-          </form>
+          <>
+            <Helmet><title>Confirm secret | Prismagram</title></Helmet>
+            <form onSubmit={onSubmit}>
+              <Input placeholder={"Confirm Secret"} required {...secret}/>
+              <Button text={"Confirm"}/>
+            </form>
+          </>
+
         )}
       </Form>
       {action !== 'confirm' && (
@@ -78,6 +87,7 @@ export default ({action, userName, password, firstName, lastName, email, setActi
           {action === 'logIn'
             ? (
               <>
+                <Helmet><title>LogIn | Prismagram</title></Helmet>
                 Don't have an account?{" "} <Link onClick={() => setAction("signUp")}>Sign up</Link>
               </>
             ) : (
