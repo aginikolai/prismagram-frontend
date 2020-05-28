@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import TextareaAutosize from 'react-autosize-textarea';
 
 import FatText from "../FatText";
 import Avatar from "../Avatar";
@@ -8,8 +9,10 @@ import {HeartEmpty, HeartFull, Message} from "../Icons";
 const Post = styled.div`
   ${props => props.theme.whiteBox};
   width: 100%;
+  //height: 1000px;
   max-width: 600px;
   margin-bottom: 25px;
+  user-select: none;
 `;
 
 const Header = styled.header`
@@ -28,10 +31,26 @@ const Location = styled.span`
   font-size: 12px;
 `;
 
-const Files = styled.div``;
+const Files = styled.div`
+  position: relative;
+  padding-top: 100%;
+  display: flex;
+  height: 750px;
+  align-items: stretch;
+  flex-shrink: 0;
+`;
 
 const File = styled.img`
   max-width: 100%;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+  opacity: ${props => props.showing ? 1 : 0};
+  transition: opacity 0.5s linear;
 `;
 
 const Button = styled.span`
@@ -63,7 +82,28 @@ const TimeStamp = styled.span`
   border-bottom: ${props => props.theme.lightgray} 1px solid;
 `;
 
-export default ({user: {userName, avatar}, location, files, isLiked, likeCount, createdAt}) => {
+const Textarea = styled(TextareaAutosize)`
+  border: none;
+  width: 100%;
+  resize: none;
+  font-size: 14px;
+  &:focus{
+    outline: none;
+  }
+`;
+
+const Comments = styled.ul`
+  margin-top: 10px;
+`;
+
+const Comment = styled.li`
+  margin-bottom: 7px;
+  span {
+    margin-right: 5px;
+  }
+`;
+export default ({user: {userName, avatar}, location, files, isLiked, likeCount, comments, newComment, currentItem, toggleLike, onKeyPress, createdTime}) => {
+  console.log(comments);
   return (
     <Post>
       <Header>
@@ -74,15 +114,26 @@ export default ({user: {userName, avatar}, location, files, isLiked, likeCount, 
         </UserColumn>
       </Header>
       <Files>
-        {files && files.map(file => <File id={file.id} src={file.url}/>)}
+        {files && files.map((file, index) => <File key={file.id} id={file.id} src={file.url} showing={index === currentItem}/>)}
       </Files>
       <Meta>
         <Buttons>
-          <Button>{isLiked ? <HeartFull/> : <HeartEmpty/> }</Button>
+          <Button onClick={toggleLike}>{isLiked ? <HeartFull/> : <HeartEmpty/> }</Button>
           <Button><Message/></Button>
         </Buttons>
         <FatText text={likeCount === 1 ? '1 like' : `${likeCount} likes`}/>
-        <TimeStamp>{createdAt}</TimeStamp>
+          {comments &&
+            <Comments>
+              {comments.map(comment => <Comment key={comment.id}><FatText text={comment.user.userName}/>{comment.text}</Comment>)}
+            </Comments>
+          }
+        <TimeStamp>{createdTime}</TimeStamp>
+        <Textarea
+          placeholder={"Add a comment..."}
+          value={newComment.value}
+          onChange={newComment.onChange}
+          onKeyPress={onKeyPress}
+        />
       </Meta>
     </Post>
   )

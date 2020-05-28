@@ -7,7 +7,7 @@ import {Helmet} from 'react-helmet';
 import Loader from "./Loader";
 import Post from "../Components/Post/index";
 
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
   {
     seeFeed {
       id
@@ -25,6 +25,7 @@ const FEED_QUERY = gql`
       likeCount
       isLiked
       createdAt
+      createdTime
       comments {
         id
         text
@@ -63,6 +64,7 @@ export default () => {
           createdAt={post.createdAt}
           location={post.location}
           caption={post.caption}
+          createdTime={post.createdTime}
         />
       )}
     </Wrapper>

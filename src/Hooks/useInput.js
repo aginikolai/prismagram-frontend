@@ -6,7 +6,7 @@ export default (defaultValue) => {
   const onChange = (event) => {
     const {target: {value}} = event;
     setValue(value);
-  }
+  };
 
-  return {value, onChange};
+  return {value, onChange, setValue};
 }

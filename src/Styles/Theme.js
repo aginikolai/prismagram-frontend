@@ -10,7 +10,7 @@ export default {
   darkGrayColor: '#999',
   lightGreyColor: '#c7c7c7',
   redColor: '#ED4956',
-  boxBorder: '1px solid gray',
+  boxBorder: '1px solid #0B0B0B',
   borderRadius: '4px',
   whiteBox: `border: ${BOX_BORDER};
              border-radius: ${BORDER_RADIUS};
